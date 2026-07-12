@@ -11,6 +11,8 @@ Engine includes:
   - Check if vectors are Orthogonal
   - Check if vectors are Parallel
   - Calculate Vector Parallelogram
+- Partial Derivatives (2 & 3 variables)
+- Double Integrals (2 & 3 variables, treats Z as constant)
 
 --------------------------------------
 USE CASE
@@ -22,6 +24,7 @@ To run it just run main and input whatever vector coordinates needed
 Use it if you really dont want to do Cross Product or Vector calculations in your head
 
 --------------------------------------
-Future Updates:
+REQUIREMENTS:
 --------------------------------------
-Depending I might add partial derivatives and double integrals
+I haven't tested on other machines yet but if you haven't make sure you install SymPy
+through pip or whatever you perfer
