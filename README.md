@@ -1,16 +1,16 @@
 PyCalc III KU 127
 ---------------
 Engine includes:
-  -Vector Operations
-    - Dot Product
-    - Cross Product
-  -Equations of lines and planes
-    - Parametric Equations
-    - Symmetric Equations
-  -Vectors Verification and Geometry Space
-    - Check if vectors are Orthogonal
-    - Check if vectors are Parallel
-    - Calculate Vector Parallelogram
+- Vector Operations
+  - Dot Product
+  - Cross Product
+- Equations of lines and planes
+  - Parametric Equations
+  - Symmetric Equations
+- Vectors Verification and Geometry Space
+  - Check if vectors are Orthogonal
+  - Check if vectors are Parallel
+  - Calculate Vector Parallelogram
 
 --------------------------------------
 I didn't add too many comments as I usually do whenever I program, this was made in 1 day and just wanted to get general programming practice
