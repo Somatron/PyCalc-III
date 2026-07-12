@@ -1,14 +1,57 @@
+import sympy as sp
+
 class Calc3:
   def __init__(self):
     pass
 
   def Partial_Derivatives(self):
-    print("ass")
+    x, y, z= sp.symbols('x y z')
+
+    problem = 69*x**3 * 16*y**5 + sp.cos(x) #EDIT THIS PROBLEM TO WHATEVER FITS YOUR PROBLEM
+    
+    df_dx = sp.diff(problem, x) #Partial derivative of X with treating other
+    print("df/dx =", df_dx)
+    df_dy = sp.diff(problem, y)
+    print("df/dy =", df_dy)
+    df_dz = sp.diff(problem, z)
+    print("df/dz =", df_dz)
+
+  def Double_Integrals(self):
+    x, y, z = sp.symbols('x, y, z')
+
+    problem = x * y
+
+    while True:
+      try:
+        x_top = float(input("Enter top variable for x: "))
+        x_bottom = float(input("Enter bottom variable for x: "))
+        break #cut the forever loop
+      except:
+        print("Please input valid numbers")
+
+    while True:
+      try:
+        y_top = float(input("Enter top variable for y: "))
+        y_bottom = float(input("Enter bottom variable for y: "))
+        break
+      except:
+        print("Please input valid numbers")
+
+    if z in problem.free_symbols: #So that our problem detects if there is a z variable or not
+      while True:
+        try:
+          z_top = float(input("Enter top variable for z: "))
+          z_bottom = float(input("Enter bottom variable for z: "))
+          break
+        except:
+          integrated_result = sp.integrate(problem, (y, x_bottom, x_top), (x, y_bottom, y_top), (z, z_bottom, z_top))
+    else:
+      integrated_result = sp.integrate(problem, (y, x_bottom, x_top), (x, y_bottom, y_top))
+    print(f"Integral result: {integrated_result}")
 
   def Calc_Vector_Parallelogram(self, vect1, vect2):
     get_cross = self.Cross_Prod(vect1, vect2, []) #no vector 3
     return((get_cross[0]**2 + get_cross[1]**2 + get_cross[2]**2) ** 0.5)
-
 
   def Check_Parallel(self, vect1, vect2):
     result_x = vect2[0]/vect1[0]
@@ -51,13 +94,14 @@ class Calc3:
     result_vect = [i, j, k]
     cross_list = []
     cross_list += [["i", "j", "k"]]
+
     if vect3a:
       cross_list.append(vect3a)
       cross_list.append(result_vect)
     else:
       cross_list.append(vect1b)
       cross_list.append(vect2c)
-
+      
     print("____________")
     print("Cross Product A x (B x C)")
     print("____________")
@@ -93,15 +137,16 @@ def main():
   print("----------------------------")
   print("Hey there fella! Choose what option you want!")
   options = 0
-  while options != 8:
-    while options > 8 or options <= 0:
+  while options != 10:
+    while options > 10 or options <= 0:
       try: 
-        options = int(input("1. Dot Product\n2. Cross Product\n3. Parametric Equations\n4. Symmetric Equations\n5. Check if vectors are Orthogonal\n6. Check if vectors are Parallel\n7. Calculate Vector Parallelogram\n8. Quit\nChoose Option: "))
+        options = int(input("1. Dot Product\n2. Cross Product\n3. Parametric Equations\n4. Symmetric Equations\n5. Check if vectors are Orthogonal\n6. Check if vectors are Parallel\n7. Calculate Vector Parallelogram\n8. Partial Derivatives\n9. Double Integrals\n10. Quit\nChoose Option: "))
         print("----------------------------")
       except:
         print("----------------------------")
         print("Please choose a Valid option")
-    if options != 8:
+    
+    if options != 10:
       vect_1 = []
       vect_2 = []
       vect_3 = []
@@ -111,14 +156,15 @@ def main():
       if options == 3 or options == 4: #Parametric or Symmetric
         problem_ask = "Point"
 
-      for vector_num in range(2):
-        for vector_index in "ijk":
-          grab_vector = float(input(f"Insert a number for {problem_ask} {vector_num} {vector_index}: "))
-          if vector_num == 0:
-            vect_1.append(grab_vector)
-          elif vector_num == 1:
-            vect_2.append(grab_vector)
-        problem_ask = "Vector" #switch back to vector after we got point from user if they select parametric or symmetric
+      if options != 8 and options != 9: #Accounting for partial derivatives and double integrals
+        for vector_num in range(2):
+          for vector_index in "ijk":
+            grab_vector = float(input(f"Insert a number for {problem_ask} {vector_num} {vector_index}: "))
+            if vector_num == 0:
+              vect_1.append(grab_vector)
+            elif vector_num == 1:
+              vect_2.append(grab_vector)
+          problem_ask = "Vector" #switch back to vector after we got point from user if they select parametric or symmetric
 
         if options == 2: #CROSS PRODUCT
           try:
@@ -156,10 +202,15 @@ def main():
       elif options == 7:
         parallel_area = calc_type.Calc_Vector_Parallelogram(vect_1, vect_2)
         print(f"Area: {parallel_area} square units")
+      elif options == 8:
+        calc_type.Partial_Derivatives() #Calculate partial
+      elif options == 9:
+        calc_type.Double_Integrals() #Calculate double integrals
 
       options = 0 #reset back to default
 
     else:
       print("Exiting...")
 
-main()
+if __name__ == "__main__": #When we run, the function runs automatically
+  main()
