@@ -23,4 +23,5 @@ Use it if you really dont want to do Cross Product or Vector calculations in you
 
 --------------------------------------
 Future Updates:
--Depending I might add partial derivatives and double integrals
+--------------------------------------
+Depending I might add partial derivatives and double integrals
